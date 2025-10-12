@@ -132,3 +132,109 @@ if __name__ == "__main__":
         password, strength, feedback = result
         print(f"\n🔐 Ваш сгенерированный пароль: {password}")
         print("\n".join(feedback))
+
+import random
+import string
+import re
+from datetime import datetime
+
+def save_passwords_to_file(passwords, filename="passwords.txt"):
+    """Сохраняет пароли в текстовый файл"""
+    try:
+        with open(filename, 'w', encoding='utf-8') as file:
+            file.write(f"=== Сгенерированные пароли ===\n")
+            file.write(f"Дата создания: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            file.write("=" * 40 + "\n\n")
+            
+            for i, (password, strength, _) in enumerate(passwords, 1):
+                file.write(f"Пароль #{i}:\n")
+                file.write(f"Пароль: {password}\n")
+                file.write(f"Сложность: {strength}\n")
+                file.write("-" * 30 + "\n")
+        
+        print(f"✅ Пароли сохранены в файл: {filename}")
+        return True
+    except Exception as e:
+        print(f"❌ Ошибка при сохранении файла: {e}")
+        return False
+
+def generate_multiple_passwords():
+    """Генерирует несколько паролей"""
+    print("\n=== Генератор нескольких паролей ===")
+    
+    try:
+        num_passwords = int(input("Сколько паролей сгенерировать? "))
+        length, use_lower, use_upper, use_digits, use_special = get_user_preferences()
+        
+        characters = ""
+        if use_lower:
+            characters += string.ascii_lowercase
+        if use_upper:
+            characters += string.ascii_uppercase
+        if use_digits:
+            characters += string.digits
+        if use_special:
+            characters += string.punctuation
+        
+        if not characters:
+            print("Ошибка: нужно выбрать хотя бы один тип символов!")
+            return None
+        
+        passwords = []
+        for i in range(num_passwords):
+            password = ''.join(random.choice(characters) for _ in range(length))
+            strength, feedback = evaluate_password_strength(password)
+            passwords.append((password, strength, feedback))
+        
+        # Показываем результаты
+        print(f"\n=== Сгенерировано {num_passwords} паролей ===")
+        for i, (password, strength, feedback) in enumerate(passwords, 1):
+            print(f"\n🔐 Пароль #{i}: {password}")
+            print(f"🏆 Сложность: {strength}")
+        
+        # Предлагаем сохранить в файл
+        save_choice = input("\n💾 Сохранить пароли в файл? (y/n): ").lower()
+        if save_choice == 'y':
+            filename = input("Введите имя файла (или нажмите Enter для passwords.txt): ").strip()
+            if not filename:
+                filename = "passwords.txt"
+            save_passwords_to_file(passwords, filename)
+        
+        return passwords
+        
+    except ValueError:
+        print("❌ Ошибка: введите корректное число!")
+        return None
+
+def main():
+    """Главная функция программы"""
+    print("🎯 Генератор безопасных паролов")
+    print("=" * 40)
+    
+    while True:
+        print("\nВыберите действие:")
+        print("1 - Сгенерировать один пароль")
+        print("2 - Сгенерировать несколько паролей")
+        print("3 - Выйти")
+        
+        choice = input("Ваш выбор (1-3): ").strip()
+        
+        if choice == '1':
+            result = generate_password()
+            if result:
+                password, strength, feedback = result
+                print(f"\n🔐 Ваш пароль: {password}")
+                print("\n".join(feedback))
+        
+        elif choice == '2':
+            generate_multiple_passwords()
+        
+        elif choice == '3':
+            print("👋 До свидания!")
+            break
+        
+        else:
+            print("❌ Неверный выбор, попробуйте снова.")
+
+if __name__ == "__main__":
+    main()

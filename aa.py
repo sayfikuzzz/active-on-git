@@ -1,6 +1,7 @@
 import random
 import string
 import re
+from datetime import datetime
 
 
 def generate_password():
@@ -129,10 +130,7 @@ if __name__ == "__main__":
         print(f"\n🔐 Ваш сгенерированный пароль: {password}")
         print("\n".join(feedback))
 
-import random
-import string
-import re
-from datetime import datetime
+
 
 def save_passwords_to_file(passwords, filename="passwords.txt"):
     """Сохраняет пароли в текстовый файл"""

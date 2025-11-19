@@ -1,5 +1,7 @@
 import random
 import string
+import re
+
 
 def generate_password():
     """Базовая функция генерации пароля"""
@@ -57,10 +59,6 @@ if __name__ == "__main__":
     password = generate_password()
     if password:
         print(f"\n✅ Ваш сгенерированный пароль: {password}")
-
-import random
-import string
-import re
 
 def evaluate_password_strength(password):
     """Оценивает сложность пароля"""

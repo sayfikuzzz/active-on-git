@@ -20,19 +20,6 @@ if __name__ == "__main__":
     print(f"Ваш пароль: {password}")
 
 
-def get_user_preferences():
-    """Получаем настройки пароля от пользователя"""
-    print("\n=== Настройки генератора паролей ===")
-    length = int(input("Введите длину пароля: "))
-    
-    print("\nВыберите типы символов:")
-    use_lowercase = input("Использовать строчные буквы? (y/n): ").lower() == 'y'
-    use_uppercase = input("Использовать заглавные буквы? (y/n): ").lower() == 'y'
-    use_digits = input("Использовать цифры? (y/n): ").lower() == 'y'
-    use_special = input("Использовать специальные символы? (y/n): ").lower() == 'y'
-    
-    return length, use_lowercase, use_uppercase, use_digits, use_special
-
 def generate_password():
     """Улучшенная функция генерации пароля"""
     length, use_lower, use_upper, use_digits, use_special = get_user_preferences()

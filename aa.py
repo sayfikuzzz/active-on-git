@@ -55,12 +55,6 @@ def get_user_preferences():
     return length, use_lowercase, use_uppercase, use_digits, use_special
 
 
-
-if __name__ == "__main__":
-    password = generate_password()
-    if password:
-        print(f"\n✅ Ваш сгенерированный пароль: {password}")
-
 def evaluate_password_strength(password):
     """Оценивает сложность пароля"""
     score = 0

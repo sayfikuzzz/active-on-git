@@ -184,7 +184,13 @@ def generate_multiple_passwords():
             print(f"\n🔐 Пароль #{i}: {password}")
             print(f"🏆 Сложность: {strength}")
         
-    
+        # Предлагаем сохранить в файл
+        save_choice = input("\n💾 Сохранить пароли в файл? (y/n): ").lower()
+        if save_choice == 'y':
+            filename = input("Введите имя файла (или нажмите Enter для passwords.txt): ").strip()
+            if not filename:
+                filename = "passwords.txt"
+            save_passwords_to_file(passwords, filename)
         
         return passwords
         

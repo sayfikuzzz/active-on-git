@@ -46,9 +46,6 @@ def get_user_preferences():
     print("\n=== Настройки генератора паролей ===")
     length = int(input("Введите длину пароля: "))
 
-
-
-    
     print("\nВыберите типы символов:")
     use_lowercase = input("Использовать строчные буквы? (y/n): ").lower() == 'y'
     use_uppercase = input("Использовать заглавные буквы? (y/n): ").lower() == 'y'

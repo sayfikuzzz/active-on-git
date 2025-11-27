@@ -113,9 +113,7 @@ def generate_password():
     if not characters:
         print("Ошибка: нужно выбрать хотя бы один тип символов!")
         return None
-
-
-    
+        
     password = ''.join(random.choice(characters) for _ in range(length))
     
     # Оцениваем сложность пароля

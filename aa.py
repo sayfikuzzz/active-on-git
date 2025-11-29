@@ -37,7 +37,9 @@ def generate_password():
     return password
 
 
-
+if __name__ == "__main__":
+    password = generate_password()
+    print(f"Ваш пароль: {password}")
     
 def get_user_preferences():
     """Получаем настройки пароля от пользователя"""

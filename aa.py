@@ -13,28 +13,6 @@ def generate_password():
     
     return password
 
-def generate_password():
-    """Улучшенная функция генерации пароля"""
-    length, use_lower, use_upper, use_digits, use_special = get_user_preferences()
-    
-    # Формируем набор символов на основе выбора пользователя
-    characters = ""
-    if use_lower:
-        characters += string.ascii_lowercase
-    if use_upper:
-        characters += string.ascii_uppercase
-    if use_digits:
-        characters += string.digits
-    if use_special:
-        characters += string.punctuation
-    
-    # Проверяем, что выбран хотя бы один тип символов
-    if not characters:
-        print("Ошибка: нужно выбрать хотя бы один тип символов!")
-        return None
-    
-    password = ''.join(random.choice(characters) for _ in range(length))
-    return password
 
 
 if __name__ == "__main__":

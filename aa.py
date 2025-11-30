@@ -198,7 +198,35 @@ def generate_multiple_passwords():
         print("❌ Ошибка: введите корректное число!")
         return None
 
-
+def main():
+    """Главная функция программы"""
+    print("🎯 Генератор безопасных паролов")
+    print("=" * 40)
+    
+    while True:
+        print("\nВыберите действие:")
+        print("1 - Сгенерировать один пароль")
+        print("2 - Сгенерировать несколько паролей")
+        print("3 - Выйти")
+        
+        choice = input("Ваш выбор (1-3): ").strip()
+        
+        if choice == '1':
+            result = generate_password()
+            if result:
+                password, strength, feedback = result
+                print(f"\n🔐 Ваш пароль: {password}")
+                print("\n".join(feedback))
+        
+        elif choice == '2':
+            generate_multiple_passwords()
+        
+        elif choice == '3':
+            print("👋 До свидания!")
+            break
+        
+        else:
+            print("❌ Неверный выбор, попробуйте снова.")
 
 
 if __name__ == "__main__":
